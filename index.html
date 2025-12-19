@@ -2,9 +2,10 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Dwi 🌙❤️</title>
+<title>Happy Birthday Dwi 🤍</title>
 
 <style>
+*{box-sizing:border-box}
 body{
     margin:0;
     font-family:'Poppins',sans-serif;
@@ -14,196 +15,318 @@ body{
     overflow-x:hidden;
 }
 
-h1,h2{text-shadow:0 0 15px #ff9a9e;}
+/* PAGE */
+.page{
+    display:none;
+    min-height:100vh;
+    padding:40px 20px 120px;
+    opacity:0;
+    transform:translateY(30px);
+}
+.page.active{
+    display:block;
+    animation:fadeSlide .6s ease forwards;
+}
+@keyframes fadeSlide{
+    to{opacity:1;transform:translateY(0);}
+}
 
+/* CARD */
 .card{
-    background:rgba(255,255,255,0.1);
+    background:rgba(255,255,255,.12);
     backdrop-filter:blur(10px);
     padding:25px;
-    margin:25px auto;
-    width:85%;
-    max-width:550px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    border-radius:25px;
+    max-width:520px;
+    margin:20px auto;
 }
 
-button{
-    padding:12px 25px;
+/* MENU */
+.menu{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(8px);
+    padding:10px 0;
+    z-index:99;
+}
+.menu button{
+    background:none;
     border:none;
-    border-radius:30px;
-    background:#ff758c;
     color:white;
-    font-size:16px;
     cursor:pointer;
+    font-size:13px;
 }
-button:hover{
-    transform:scale(1.05);
+.menu span{font-size:22px;display:block}
+
+/* MARQUEE */
+.marquee{overflow:hidden;white-space:nowrap}
+.marquee span{
+    display:inline-block;
+    padding-left:100%;
+    animation:marquee 18s linear infinite;
+}
+@keyframes marquee{
+    to{transform:translateX(-100%)}
 }
 
+/* PROFILE */
 .profile img{
     width:180px;
     height:180px;
     border-radius:50%;
     border:4px solid white;
     object-fit:cover;
-    margin-bottom:15px;
+    animation:pulse 2s infinite;
+}
+@keyframes pulse{50%{transform:scale(1.05)}}
+
+/* CAKE */
+.cake{
+    width:160px;
+    height:100px;
+    background:#ffb703;
+    margin:20px auto;
+    border-radius:12px;
+    position:relative;
+    cursor:pointer;
+}
+.candle{
+    width:12px;
+    height:35px;
+    background:white;
+    position:absolute;
+    top:-35px;
+    left:74px;
+}
+.flame{
+    width:14px;
+    height:14px;
+    background:orange;
+    border-radius:50%;
+    position:absolute;
+    top:-14px;
+    left:-1px;
+    animation:flicker .25s infinite;
+}
+@keyframes flicker{50%{transform:scale(1.3)}}
+
+/* DOA */
+#doaBox{display:none;margin-top:20px}
+.doa{
+    font-size:16px;
+    line-height:1.8;
+    opacity:0;
+    animation:fadeIn .8s forwards;
+}
+@keyframes fadeIn{to{opacity:1}}
+
+/* STARS */
+.star{
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s ease forwards;
+}
+@keyframes twinkle{
+    0%{opacity:0;transform:scale(.5)}
+    50%{opacity:1;transform:scale(1.5)}
+    100%{opacity:0}
 }
 
+/* QUIZ */
+.quiz-btn{
+    width:100%;
+    padding:14px;
+    margin:8px 0;
+    border-radius:30px;
+    border:none;
+    background:#ff758c;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* GALLERY */
 .gallery{
     display:flex;
+    gap:12px;
     justify-content:center;
     flex-wrap:wrap;
-    gap:12px;
 }
-
 .gallery img{
     width:120px;
     height:120px;
     border-radius:15px;
     border:3px solid white;
     object-fit:cover;
-    transition:.3s;
-}
-.gallery img:hover{transform:scale(1.1);}
-
-/* 🎂 CAKE */
-.cake{
-    margin:20px auto;
-    width:150px;
-    height:100px;
-    background:#ffb703;
-    border-radius:10px;
-    position:relative;
-}
-.candle{
-    width:10px;
-    height:30px;
-    background:white;
-    position:absolute;
-    top:-30px;
-    left:70px;
-}
-.flame{
-    width:12px;
-    height:12px;
-    background:orange;
-    border-radius:50%;
-    position:absolute;
-    top:-12px;
-    left:-1px;
-    animation:flicker .3s infinite;
-}
-@keyframes flicker{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.2);}
-    100%{transform:scale(1);}
-}
-
-/* QUIZ */
-.quiz button{
-    display:block;
-    width:100%;
-    margin:8px 0;
-}
-
-/* CONFETTI */
-.confetti{
-    position:fixed;
-    width:10px;
-    height:10px;
-    top:-10px;
-    animation:fall linear infinite;
-    pointer-events:none; /* 🔥 PENTING */
-}
-@keyframes fall{
-    to{transform:translateY(110vh) rotate(360deg);}
-}
-
-footer{
-    margin:40px 0;
-    font-size:14px;
-    opacity:.8;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Musik -->
-<audio autoplay loop muted playsinline>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3">
-</audio>
+<!-- HOME -->
+<div id="home" class="page active">
+    <h1>🎉 Happy Birthday 🎉</h1>
+    <h2>Dwi Mardatillah Sayangg🤍</h2>
 
-<h1>🎉 Happy Birthday 🎉</h1>
-<h2>Dwi Mardatillah Sayanggg❤️</h2>
+    <div class="marquee">
+        <span>
+        Hari ini bukan cuma tentang bertambahnya usia,
+        tapi tentang betapa berharganya kamu dalam hidupku 🤍
+        </span>
+    </div>
 
-<div class="card profile">
-    <img src="foto4.jpeg" alt="Foto Dwi">
-    <p>Perempuan yang selalu jadi alasan aku bersyukur setiap hari 🤍</p>
+    <div class="card profile">
+        <img src="foto4.jpeg">
+        <p>Kamu adalah rumah yang selalu aku tuju 🌙</p>
+    </div>
 </div>
 
-<div class="card">
-    <h3>🕯️ Tiup Lilin Dulu</h3>
-    <div class="cake" onclick="blowCandle()">
-        <div class="candle">
-            <div class="flame" id="flame"></div>
+<!-- CAKE -->
+<div id="cake" class="page">
+    <h2>🎂 Tiup Lilin</h2>
+    <div class="card">
+        <div class="cake" onclick="blow()">
+            <div class="candle">
+                <div class="flame" id="flame"></div>
+            </div>
+        </div>
+        <p id="cakeText">Klik kuenya dan buat permohonan 🤍</p>
+        <div id="doaBox">
+            <p class="doa"></p>
         </div>
     </div>
-    <p id="wish">Klik kuenya dan buat permohonan ✨</p>
 </div>
 
-<div class="card">
-    <h3>📍 Jarak Kita</h3>
-    <p>Aku di <b>Padang</b><br>Kamu di <b>Pekanbaru</b></p>
-    <p>Jarak ± <b>260 km</b><br>tapi rasa tetap dekat ❤️</p>
-</div>
-
-<div class="card quiz">
-    <h3>🧠 Seberapa Kenal Aku?</h3>
-    <p>Apa yang paling sering aku bilang ke kamu?</p>
-    <button onclick="wrong()">“Terserah”</button>
-    <button onclick="right()">“Hati-hati ya” ❤️</button>
-    <button onclick="wrong()">“Aku sibuk”</button>
-    <p id="quizResult"></p>
-</div>
-
-<div class="card">
-    <h3>📸 Galeri Kenangan</h3>
-    <div class="gallery">
-        <img src="foto1.jpg.jpeg">
-        <img src="foto2.jpeg">
-        <img src="foto3.jpeg">
+<!-- QUIZ -->
+<div id="quiz" class="page">
+    <h2>🧠 Seberapa Kenal Aku?</h2>
+    <div class="card">
+        <p id="question"></p>
+        <div id="answers"></div>
+        <p id="quizResult"></p>
     </div>
 </div>
 
-<footer>Dibuat dengan cinta yang paling tulus 🌙❤️</footer>
+<!-- GALLERY -->
+<div id="gallery" class="page">
+    <h2>📸 Kenangan Kita</h2>
+    <div class="card">
+        <div class="gallery">
+            <img src="foto1.jpg.jpeg">
+            <img src="foto2.jpeg">
+            <img src="foto3.jpeg">
+        </div>
+    </div>
+</div>
+
+<!-- MENU -->
+<div class="menu">
+    <button onclick="showPage('home')"><span>🏠</span>Home</button>
+    <button onclick="showPage('cake')"><span>🎂</span>Kue</button>
+    <button onclick="showPage('quiz')"><span>🧠</span>Quiz</button>
+    <button onclick="showPage('gallery')"><span>📸</span>Foto</button>
+</div>
 
 <script>
-function blowCandle(){
+function showPage(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+/* CAKE + DOA */
+const doaList=[
+ "Semoga kamu selalu diberi kesehatan 🤍",
+ "Semoga langkahmu selalu dimudahkan ✨",
+ "Semoga hatimu selalu tenang 🌙",
+ "Semoga senyummu tak pernah pudar 😊",
+ "Dan semoga aku masih boleh menemani kamu… selamanya ❤️"
+];
+let di=0, ci=0;
+
+function blow(){
     document.getElementById("flame").style.display="none";
-    document.getElementById("wish").innerHTML="Semoga semua doa kamu terkabul 🥺❤️";
-    confetti();
+    document.getElementById("cakeText").innerHTML="Aamiin 🤍";
+    document.getElementById("doaBox").style.display="block";
+    di=0; nextDoa();
 }
 
-function right(){
-    document.getElementById("quizResult").innerHTML="BENAR 😍 Kamu paling kenal aku!";
-    confetti();
-}
-function wrong(){
-    document.getElementById("quizResult").innerHTML="Salah 😆 Tapi tetap aku sayang";
+function nextDoa(){
+    if(di>=doaList.length) return;
+    const el=document.querySelector(".doa");
+    el.innerHTML=""; el.style.opacity=1;
+    ci=0; spawnStars();
+    const text=doaList[di];
+    const t=setInterval(()=>{
+        el.innerHTML+=text.charAt(ci);
+        ci++;
+        if(ci>=text.length){
+            clearInterval(t);
+            di++;
+            setTimeout(nextDoa,1500);
+        }
+    },50);
 }
 
-function confetti(){
-    for(let i=0;i<80;i++){
-        let c=document.createElement("div");
-        c.className="confetti";
-        c.style.left=Math.random()*100+"vw";
-        c.style.background = hsl(${Math.random()*360},100%,60%);
-        c.style.animationDuration=(Math.random()*3+2)+"s";
-        document.body.appendChild(c);
-        setTimeout(()=>c.remove(),5000);
+/* STARS */
+function spawnStars(){
+    for(let i=0;i<25;i++){
+        const s=document.createElement("div");
+        s.className="star";
+        s.style.left=Math.random()*100+"vw";
+        s.style.top=Math.random()*100+"vh";
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),2000);
     }
 }
+
+/* QUIZ */
+const quiz=[
+ {q:"Apa yang paling sering aku bilang?",a:["Terserah","Hati-hati ya ❤️","Aku sibuk"],c:1},
+ {q:"Kalau kamu capek aku biasanya?",a:["Marah","Nasehatin","Nyuruh istirahat 🤍"],c:2},
+ {q:"Aku cemburu kalau kamu?",a:["Capek","Ngilang","Ga ngabarin 😌"],c:2},
+ {q:"Hal kecil yang selalu aku ingat?",a:["Tanggal jadian","Makanan favorit","Semua tentang kamu ❤️"],c:2},
+ {q:"Aku sayang kamu karena?",a:["PIntar","Rajin","Kamu adalah rumah 🤍"],c:2}
+];
+let qi=0;
+
+function loadQuiz(){
+    const q=quiz[qi];
+    document.getElementById("question").innerHTML=q.q;
+    const a=document.getElementById("answers");
+    a.innerHTML="";
+    q.a.forEach((t,i)=>{
+        const b=document.createElement("button");
+        b.className="quiz-btn";
+        b.innerText=t;
+        b.onclick=()=>check(i);
+        a.appendChild(b);
+    });
+    document.getElementById("quizResult").innerHTML="";
+}
+function check(i){
+    if(i===quiz[qi].c){
+        document.getElementById("quizResult").innerHTML="Benar 🤍";
+        qi++;
+        setTimeout(()=>{
+            if(qi<quiz.length) loadQuiz();
+            else{
+                document.getElementById("question").innerHTML="🎉 Kamu lulus";
+                document.getElementById("answers").innerHTML="<p>Aku bersyukur punya kamu ❤️</p>";
+            }
+        },1000);
+    }else{
+        document.getElementById("quizResult").innerHTML="Salah 😆 Coba lagi";
+    }
+}
+loadQuiz();
 </script>
 
 </body>
