@@ -36,6 +36,9 @@ button{
     font-size:16px;
     cursor:pointer;
 }
+button:hover{
+    transform:scale(1.05);
+}
 
 .profile img{
     width:180px;
@@ -61,10 +64,7 @@ button{
     object-fit:cover;
     transition:.3s;
 }
-
-.gallery img:hover{
-    transform:scale(1.1);
-}
+.gallery img:hover{transform:scale(1.1);}
 
 /* 🎂 CAKE */
 .cake{
@@ -113,6 +113,7 @@ button{
     height:10px;
     top:-10px;
     animation:fall linear infinite;
+    pointer-events:none; /* 🔥 PENTING */
 }
 @keyframes fall{
     to{transform:translateY(110vh) rotate(360deg);}
@@ -128,24 +129,19 @@ footer{
 
 <body>
 
-<!-- 🎵 Musik Romantis -->
-<audio autoplay loop>
+<!-- 🎵 Musik -->
+<audio autoplay loop muted playsinline>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3">
 </audio>
 
 <h1>🎉 Happy Birthday 🎉</h1>
-<h2>Dwi Mardatillah ❤️</h2>
+<h2>Dwi Mardatillah Sayanggg❤️</h2>
 
-<!-- FOTO PROFIL -->
 <div class="card profile">
     <img src="foto4.jpeg" alt="Foto Dwi">
-    <p>
-        Perempuan yang selalu jadi alasan
-        aku bersyukur setiap hari 🤍
-    </p>
+    <p>Perempuan yang selalu jadi alasan aku bersyukur setiap hari 🤍</p>
 </div>
 
-<!-- TIUP LILIN -->
 <div class="card">
     <h3>🕯️ Tiup Lilin Dulu</h3>
     <div class="cake" onclick="blowCandle()">
@@ -156,32 +152,21 @@ footer{
     <p id="wish">Klik kuenya dan buat permohonan ✨</p>
 </div>
 
-<!-- JARAK -->
 <div class="card">
     <h3>📍 Jarak Kita</h3>
-    <p>
-        Aku di <b>Padang</b><br>
-        Kamu di <b>Pekanbaru</b>
-    </p>
-    <p>
-        Jarak ± <b>260 km</b><br>
-        tapi rasa tetap dekat ❤️
-    </p>
+    <p>Aku di <b>Padang</b><br>Kamu di <b>Pekanbaru</b></p>
+    <p>Jarak ± <b>260 km</b><br>tapi rasa tetap dekat ❤️</p>
 </div>
 
-<!-- QUIZ -->
 <div class="card quiz">
     <h3>🧠 Seberapa Kenal Aku?</h3>
     <p>Apa yang paling sering aku bilang ke kamu?</p>
-
     <button onclick="wrong()">“Terserah”</button>
     <button onclick="right()">“Hati-hati ya” ❤️</button>
     <button onclick="wrong()">“Aku sibuk”</button>
-
     <p id="quizResult"></p>
 </div>
 
-<!-- GALERI -->
 <div class="card">
     <h3>📸 Galeri Kenangan</h3>
     <div class="gallery">
@@ -189,14 +174,9 @@ footer{
         <img src="foto2.jpeg">
         <img src="foto3.jpeg">
     </div>
-    <p style="font-size:14px;opacity:.8">
-        Setiap foto selalu punya cerita tentang kita 🤍
-    </p>
 </div>
 
-<footer>
-    Dibuat dengan cinta yang paling tulus 🌙❤️
-</footer>
+<footer>Dibuat dengan cinta yang paling tulus 🌙❤️</footer>
 
 <script>
 function blowCandle(){
@@ -218,7 +198,7 @@ function confetti(){
         let c=document.createElement("div");
         c.className="confetti";
         c.style.left=Math.random()*100+"vw";
-        c.style.background=hsl(${Math.random()*360},100%,60%);
+        c.style.background = hsl(${Math.random()*360},100%,60%);
         c.style.animationDuration=(Math.random()*3+2)+"s";
         document.body.appendChild(c);
         setTimeout(()=>c.remove(),5000);
@@ -228,4 +208,3 @@ function confetti(){
 
 </body>
 </html>
-
