@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Dwi 🌙❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:radial-gradient(circle at top,#1b2735,#090a0f);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+h1,h2{text-shadow:0 0 15px #ff9a9e;}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    padding:25px;
+    margin:25px auto;
+    width:85%;
+    max-width:550px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff758c;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.profile img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:4px solid white;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.gallery{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.gallery img{
+    width:120px;
+    height:120px;
+    border-radius:15px;
+    border:3px solid white;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.1);
+}
+
+/* 🎂 CAKE */
+.cake{
+    margin:20px auto;
+    width:150px;
+    height:100px;
+    background:#ffb703;
+    border-radius:10px;
+    position:relative;
+}
+.candle{
+    width:10px;
+    height:30px;
+    background:white;
+    position:absolute;
+    top:-30px;
+    left:70px;
+}
+.flame{
+    width:12px;
+    height:12px;
+    background:orange;
+    border-radius:50%;
+    position:absolute;
+    top:-12px;
+    left:-1px;
+    animation:flicker .3s infinite;
+}
+@keyframes flicker{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+
+/* QUIZ */
+.quiz button{
+    display:block;
+    width:100%;
+    margin:8px 0;
+}
+
+/* CONFETTI */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:-10px;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);}
+}
+
+footer{
+    margin:40px 0;
+    font-size:14px;
+    opacity:.8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Musik Romantis -->
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3">
+</audio>
+
+<h1>🎉 Happy Birthday 🎉</h1>
+<h2>Dwi Mardatillah ❤️</h2>
+
+<!-- FOTO PROFIL -->
+<div class="card profile">
+    <img src="foto4.jpeg" alt="Foto Dwi">
+    <p>
+        Perempuan yang selalu jadi alasan
+        aku bersyukur setiap hari 🤍
+    </p>
+</div>
+
+<!-- TIUP LILIN -->
+<div class="card">
+    <h3>🕯️ Tiup Lilin Dulu</h3>
+    <div class="cake" onclick="blowCandle()">
+        <div class="candle">
+            <div class="flame" id="flame"></div>
+        </div>
+    </div>
+    <p id="wish">Klik kuenya dan buat permohonan ✨</p>
+</div>
+
+<!-- JARAK -->
+<div class="card">
+    <h3>📍 Jarak Kita</h3>
+    <p>
+        Kamu di <b>Padang</b><br>
+        Aku di <b>Pekanbaru</b>
+    </p>
+    <p>
+        Jarak ± <b>260 km</b><br>
+        tapi rasa tetap dekat ❤️
+    </p>
+</div>
+
+<!-- QUIZ -->
+<div class="card quiz">
+    <h3>🧠 Seberapa Kenal Aku?</h3>
+    <p>Apa yang paling sering aku bilang ke kamu?</p>
+
+    <button onclick="wrong()">“Terserah”</button>
+    <button onclick="right()">“Hati-hati ya” ❤️</button>
+    <button onclick="wrong()">“Aku sibuk”</button>
+
+    <p id="quizResult"></p>
+</div>
+
+<!-- GALERI -->
+<div class="card">
+    <h3>📸 Galeri Kenangan</h3>
+    <div class="gallery">
+        <img src="foto1.jpg.jpeg">
+        <img src="foto2.jpeg">
+        <img src="foto3.jpeg">
+    </div>
+    <p style="font-size:14px;opacity:.8">
+        Setiap foto selalu punya cerita tentang kita 🤍
+    </p>
+</div>
+
+<footer>
+    Dibuat dengan cinta yang paling tulus 🌙❤️
+</footer>
+
+<script>
+function blowCandle(){
+    document.getElementById("flame").style.display="none";
+    document.getElementById("wish").innerHTML="Semoga semua doa kamu terkabul 🥺❤️";
+    confetti();
+}
+
+function right(){
+    document.getElementById("quizResult").innerHTML="BENAR 😍 Kamu paling kenal aku!";
+    confetti();
+}
+function wrong(){
+    document.getElementById("quizResult").innerHTML="Salah 😆 Tapi tetap aku sayang";
+}
+
+function confetti(){
+    for(let i=0;i<80;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=hsl(${Math.random()*360},100%,60%);
+        c.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),5000);
+    }
+}
+</script>
+
+</body>
+</html>
